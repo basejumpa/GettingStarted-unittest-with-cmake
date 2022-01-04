@@ -21,6 +21,7 @@ PS C:\users\basejumpa\unittest_with_cmake> cmake --build build
 
 The default target (so if you ommit to specify a special target, comprises the creation of the test executable(s). But it does not comprise their execution. It creates empty folder `Testing/Temporary/` inside the build folder as preparation for the test run(s).
 
+
 ```
 PS C:\users\basejumpa\unittest_with_cmake> cmake --build build --target test
 ```
@@ -39,11 +40,27 @@ Target `help` lists all primary targets.
 
 CMake distuingishes primary targets and other targets.
 
+Directive `include(CTest)` must be inside the top-level `CMakeLists.txt`. When put inside "lower" `CMakeLists.txt` the target `test` is unknown. The test executable(s) are built, though.
+
+Existing directive `add_test` when `include(CTest)` is omitted does not break the configure nor build. But it does not have any effect, through.
+
+The parameter `NAME` of directive `add_test` is not a target. So CMake knows the term `test name`. It is not (necessarily) the filename of the executable which contains the test.
+
+It is not necessary to use cmake command `enable_testing()`. 
+
 
 ```
-PS C:\users\basejumpa\unittest_with_cmake> cmake
+PS C:\Users\basejumpa\unittest_with_cmake> rm -r -fo build
+```
+I can remove the build directory from powershell.
+
+
+```
+PS C:\users\basejumpa\unittest_with_cmake> cmake -B build -G Ninja
+PS C:\Users\basejumpa\unittest_with_cmake> cmake-gui -B build -S .
 ```
 
+I can investigate the settings with the GUI. To do so I need to specify both the build folder and also the source folder explicitely.
 
 # Some personal preferences 
 
