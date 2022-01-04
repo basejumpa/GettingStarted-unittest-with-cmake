@@ -1,5 +1,3 @@
-#include(CTest)
-
 # Add catch as an interface library
 set(CATCH_INCLUDE_DIR ${CMAKE_SOURCE_DIR}/externals/Catch2/include)
 set(CATCH_LIB_DIR ${CMAKE_SOURCE_DIR}/externals/Catch2/lib)
